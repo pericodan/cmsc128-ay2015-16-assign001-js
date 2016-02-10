@@ -1,4 +1,4 @@
-function numToWord(num){
+function numToWords(num){
 	var divider = 1000000;
 	var word = "";
 	
@@ -122,7 +122,7 @@ function numToWord(num){
 	return word;
 }
 
-function wordToNum(word){
+function wordsToNum(word){
 	var words = word.split(" ");
 	var num = 0;
 	var i;
@@ -241,3 +241,9 @@ function wordToNum(word){
 	
 	return num;
 }
+
+function wordsToCurrency(word, currency){
+	return currency + wordsToNum(word);
+}
+
+
