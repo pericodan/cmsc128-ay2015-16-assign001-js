@@ -246,4 +246,23 @@ function wordsToCurrency(word, currency){
 	return currency + wordsToNum(word);
 }
 
-
+function numberDelimited(num, delimiter, limit){
+	var numbers = num.toString().split("");
+	var i = numbers.length - 1;
+	var a = 1;
+	var answer = "";
+	
+	while (i>-1){
+		if (a % limit == 0 && i != 0){
+			answer = delimiter + numbers[i] + answer;
+		}
+		else{
+			answer = numbers[i] + answer;
+		}
+		i--;
+		a++;
+	}
+	
+	return answer;
+	
+}
