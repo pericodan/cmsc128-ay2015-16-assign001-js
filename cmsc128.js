@@ -121,3 +121,123 @@ function numToWord(num){
 	
 	return word;
 }
+
+function wordToNum(word){
+	var words = word.split(" ");
+	var num = 0;
+	var i;
+	var temp = 0;
+	
+	for(i=0; i<words.length; i++){
+		switch(words[i]){
+			case "one":
+				temp = 1;
+				break;
+			case "two":
+				temp = 2;
+				break;
+			case "three":
+				temp = 3;
+				break;
+			case "four":
+				temp = 4;
+				break;
+			case "five":
+				temp = 5;
+				break
+			case "six":
+				temp = 6;
+				break;
+			case "seven":
+				temp = 7;
+				break;
+			case "eight":
+				temp = 8;
+				break;
+			case "nine":
+				temp = 9;
+				break;
+			case "ten":
+				temp = 10;
+				break;
+			case "eleven":
+				temp = 11;
+				break;
+			case "twelve":
+				temp = 12;
+				break;
+			case "thirteen":
+				temp = 13;
+				break;
+			case "fourteen":
+				temp = 14;
+				break;
+			case "fifteen":
+				temp = 15;
+				break;
+			case "sixteen":
+				temp = 16;
+				break;
+			case "seventeen":
+				temp = 17;
+				break;
+			case "eighteen":
+				temp = 18;
+				break;
+			case "nineteen":
+				temp = 19;
+				break;
+			case "twenty":
+				temp = 20;
+				break;
+			case "thirty":
+				temp = 30;
+				break;
+			case "fourty":
+				temp = 40;
+				break;
+			case "fifty":
+				temp = 50;
+				break;
+			case "sixty":
+				temp = 60;
+				break;
+			case "seventy":
+				temp = 70;
+				break;
+			case "eighty":
+				temp = 80;
+				break;
+			case "ninety":
+				temp = 90;
+				break;
+			default:
+				temp = 0;
+		}
+		if(i+1<words.length){
+			switch(words[i+1]){
+				case "million":
+					temp = temp * 1000000;
+					i++;
+					break;
+				case "hundred":
+					if(i+2<words.length && (words[i+2]=="thousand"||words[i+3]=="thousand")){
+						temp = temp * 100000;
+						i++;
+					}
+					else{
+						temp = temp * 100;
+						i++;
+					}
+					break;
+				case "thousand":
+					temp = temp * 1000;
+					i++;
+					break;
+			}
+		}
+		num = num + temp;
+	}
+	
+	return num;
+}
