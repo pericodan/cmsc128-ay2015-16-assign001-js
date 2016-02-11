@@ -189,27 +189,43 @@ function wordsToNum(word){
 				break;
 			case "twenty":
 				temp = 20;
+				if(words [i+2]=="thousand")
+					temp = temp*1000;
 				break;
 			case "thirty":
 				temp = 30;
+				if(words [i+2]=="thousand")
+					temp = temp*1000;
 				break;
 			case "fourty":
 				temp = 40;
+				if(words [i+2]=="thousand")
+					temp = temp*1000;
 				break;
 			case "fifty":
 				temp = 50;
+				if(words [i+2]=="thousand")
+					temp = temp*1000;
 				break;
 			case "sixty":
 				temp = 60;
+				if(words [i+2]=="thousand")
+					temp = temp*1000;
 				break;
 			case "seventy":
 				temp = 70;
+				if(words [i+2]=="thousand")
+					temp = temp*1000;
 				break;
 			case "eighty":
 				temp = 80;
+				if(words [i+2]=="thousand")
+					temp = temp*1000;
 				break;
 			case "ninety":
 				temp = 90;
+				if(words [i+2]=="thousand")
+					temp = temp*1000;
 				break;
 			default:
 				temp = 0;
@@ -221,7 +237,7 @@ function wordsToNum(word){
 					i++;
 					break;
 				case "hundred":
-					if(i+2<words.length && (words[i+2]=="thousand"||words[i+3]=="thousand")){
+					if(i+2<words.length && (words[i+2]=="thousand"||words[i+3]=="thousand")||words[i+4]=="thousand"){
 						temp = temp * 100000;
 						i++;
 					}
