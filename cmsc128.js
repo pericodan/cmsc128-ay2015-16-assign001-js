@@ -1,13 +1,25 @@
+/*
+	Perico Dan B. Dionisio
+	2013-13692
+	CMSC 128 AB-1L
+*/
+
 function numToWords(num){
+/*
+	this function will return the number in words form
+*/
 	var divider = 1000000;
-	var word = "";
+	var word = ""; //accumulator of the words
 	
+	if(num==0){ //special case
+		return "zero ";
+	}
 	while(num>0){
 		
-		if(Math.floor(num/divider)>0 && (divider==10000 || divider==10)){
+		if(Math.floor(num/divider)>0 && (divider==10000 || divider==10)){ // tens or ten thousands case
 			
-			switch(Math.floor(num/divider)){
-				case 1:
+			switch(Math.floor(num/divider)){ //to know the number in the tens or ten thousands place
+				case 1: //if number one it will check the following number for the right term
 					
 					switch(Math.floor((num - (Math.floor(num/divider)*divider))/(divider/10))){
 						case 0:
@@ -41,8 +53,8 @@ function numToWords(num){
 							word = word + "ninetten ";
 							break;
 					}
-					num = num - (Math.floor(num/divider)*divider);
-					divider = divider / 10;
+					num = num - (Math.floor(num/divider)*divider); //to update the number
+					divider = divider / 10; //to update the divider
 					if(divider==1000) word = word + "thousand ";
 					break;
 				case 2:
@@ -71,11 +83,11 @@ function numToWords(num){
 					break;
 				
 			}
-			num = num - (Math.floor(num/divider)*divider);
+			num = num - (Math.floor(num/divider)*divider); //to update the number
 		}
 		
 		
-		else if(Math.floor(num/divider)>0){
+		else if(Math.floor(num/divider)>0){ // if it is not the case of tens or ten thousands
 			
 			switch(Math.floor(num/divider)){
 				case 1:
@@ -107,8 +119,8 @@ function numToWords(num){
 					break;
 				
 			}
-			num = num - (Math.floor(num/divider)*divider);
-			if(divider==1000000) word = word + "milion ";
+			num = num - (Math.floor(num/divider)*divider); //to update the divider
+			if(divider==1000000) word = word + "milion "; 
 			else if(divider==100000) word = word + "hundred thousand ";
 			else if(divider==1000) word = word + "thousand ";
 			else if(divider==100) word = word + "hundred ";
@@ -123,13 +135,20 @@ function numToWords(num){
 }
 
 function wordsToNum(word){
-	var words = word.split(" ");
+/*
+	this function will return the number in digit form
+*/
+	var words = word.split(" "); //to put each word in an array
 	var num = 0;
 	var i;
-	var temp = 0;
+	var temp = 0;//accumulator
+	
+	if(words[0]=="zero" && words.length==1){ //special case of zero
+		return 0;
+	}
 	
 	for(i=0; i<words.length; i++){
-		switch(words[i]){
+		switch(words[i]){ //to identify each number
 			case "one":
 				temp = 1;
 				break;
@@ -230,7 +249,7 @@ function wordsToNum(word){
 			default:
 				temp = 0;
 		}
-		if(i+1<words.length){
+		if(i+1<words.length){ // this will make adjustments in the number by multiplying it by the right number
 			switch(words[i+1]){
 				case "million":
 					temp = temp * 1000000;
@@ -259,16 +278,22 @@ function wordsToNum(word){
 }
 
 function wordsToCurrency(word, currency){
-	return currency + wordsToNum(word);
+/*
+	this function will return the number with currency
+*/
+	return currency +" "+ wordsToNum(word); //to return the concatinated currency nd numbers
 }
 
 function numberDelimited(num, delimiter, limit){
-	var numbers = num.toString().split("");
+/*
+	this function will delimit the number with the specified delimiter and with the specific length
+*/
+	var numbers = num.toString().split("");//this will put the numbers in an array
 	var i = numbers.length - 1;
 	var a = 1;
-	var answer = "";
+	var answer = "";//accumulator
 	
-	while (i>-1){
+	while (i>-1){ //this will traverse the array and will add the delimiter
 		if (a % limit == 0 && i != 0){
 			answer = delimiter + numbers[i] + answer;
 		}
