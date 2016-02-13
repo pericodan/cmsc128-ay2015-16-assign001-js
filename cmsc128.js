@@ -10,6 +10,7 @@ function numToWords(num){
 */
 	var divider = 1000000;
 	var word = ""; //accumulator of the words
+	var thousands = false;
 	
 	if(num==0){ //special case
 		return "zero ";
@@ -59,27 +60,35 @@ function numToWords(num){
 					break;
 				case 2:
 					word = word + "twenty ";
+					if (divider==10000) thousands = true;
 					break;
 				case 3:
 					word = word + "thirty ";
+					if (divider==10000) thousands = true;
 					break;
 				case 4:
 					word = word + "fourty ";
+					if (divider==10000) thousands = true;
 					break;
 				case 5:
 					word = word + "fifty ";
+					if (divider==10000) thousands = true;
 					break;
 				case 6:
 					word = word + "sixty ";
+					if (divider==10000) thousands = true;
 					break;
 				case 7:
 					word = word + "seventy ";
+					if (divider==10000) thousands = true;
 					break;
 				case 8:
 					word = word + "eighty ";
+					if (divider==10000) thousands = true;
 					break;
 				case 9:
 					word = word + "ninety ";
+					if (divider==10000) thousands = true;
 					break;
 				
 			}
@@ -121,13 +130,16 @@ function numToWords(num){
 			}
 			num = num - (Math.floor(num/divider)*divider); //to update the divider
 			if(divider==1000000) word = word + "milion "; 
-			else if(divider==100000) word = word + "hundred thousand ";
-			else if(divider==1000) word = word + "thousand ";
+			else if(divider==100000) {
+				word = word + "hundred ";
+				thousands = true
+			}
+			else if(divider==1000) thousands = true;
 			else if(divider==100) word = word + "hundred ";
 			else word = word +" ";
 		}
 		
-		
+		if (thousands && divider==1000) word = word + "thousand ";
 		divider = divider/10;
 	}
 	
