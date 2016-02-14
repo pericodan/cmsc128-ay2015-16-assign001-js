@@ -56,7 +56,7 @@ function numToWords(num){
 					}
 					num = num - (Math.floor(num/divider)*divider); //to update the number
 					divider = divider / 10; //to update the divider
-					if(divider==1000) word = word + "thousand ";
+					if(divider==1000) thousands = true;
 					break;
 				case 2:
 					word = word + "twenty ";
